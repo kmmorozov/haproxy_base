@@ -1,0 +1,193 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "HAProxy",
+  "scopeName": "source.haproxy",
+  "fileTypes": [
+    "cfg",
+    "conf"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#sections"
+    },
+    {
+      "include": "#directives"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#sample-fetches"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#addresses"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#paths"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.haproxy",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.haproxy",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.haproxy",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "sections": {
+      "patterns": [
+        {
+          "name": "meta.section.haproxy",
+          "match": "^\\s*(global|defaults|frontend|backend|listen|peers|resolvers|userlist|program|mailers|cache|fcgi-app|http-errors|ring)\\b(?:\\s+([A-Za-z0-9_.:-]+))?",
+          "captures": {
+            "1": {
+              "name": "keyword.control.section.haproxy"
+            },
+            "2": {
+              "name": "entity.name.section.haproxy"
+            }
+          }
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "name": "meta.directive.haproxy",
+          "match": "^\\s*(acl|alpn|balance|bind|cache|capture|chroot|compression|cookie|daemon|default-server|default_backend|disabled|email-alert|errorfile|errorloc|errorloc302|errorloc303|filter|fullconn|group|http-after-response|http-check|http-error|http-request|http-response|http-reuse|log|log-format|max-age|max-object-size|maxconn|mode|monitor-uri|no|option|pidfile|rate-limit|redirect|retries|server|server-state-file|source|ssl-default-[A-Za-z0-9_-]+|stats|stick|stick-table|tcp-check|tcp-request|tcp-response|timeout|total-max-size|unique-id-format|use_backend|user)\\b",
+          "captures": {
+            "1": {
+              "name": "support.function.directive.haproxy"
+            }
+          }
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.sample-expression.haproxy",
+          "begin": "%\\[",
+          "end": "\\]",
+          "patterns": [
+            {
+              "include": "#sample-fetches"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#addresses"
+            },
+            {
+              "include": "#numbers"
+            }
+          ]
+        }
+      ]
+    },
+    "sample-fetches": {
+      "patterns": [
+        {
+          "name": "support.function.sample-fetch.haproxy",
+          "match": "\\b([A-Za-z][A-Za-z0-9_.-]*)(?=\\()"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.condition.haproxy",
+          "match": "\\b(if|unless|and|or|not)\\b|!"
+        },
+        {
+          "name": "constant.language.method.haproxy",
+          "match": "\\b(GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS|TRACE|CONNECT)\\b"
+        },
+        {
+          "name": "constant.language.mode.haproxy",
+          "match": "\\b(http|tcp|health)\\b"
+        },
+        {
+          "name": "constant.language.balance.haproxy",
+          "match": "\\b(roundrobin|static-rr|leastconn|first|source|uri|url_param|hdr|random|rdp-cookie)\\b"
+        },
+        {
+          "name": "support.constant.option.haproxy",
+          "match": "\\b(admin|allow|auth|backup|beg|cache-store|cache-use|check|code|crt|deny|deny_status|disabled|dontlognull|except|expect|expose-fd|fall|fastinter|forwardfor|format|hdr|http-keep-alive|http-server-close|httpchk|httplog|indirect|insecure-password|inter|len|level|listeners|local[0-7]|meth|nocache|password|prometheus-exporter|raw|realm|redispatch|redirect|refresh|rise|scheme|send|send-proxy|send-proxy-v2|set-header|socket|ssl|ssl_fc|status|tcplog|uri|use-service|ver|weight)\\b"
+        }
+      ]
+    },
+    "addresses": {
+      "patterns": [
+        {
+          "name": "constant.numeric.ip-address.haproxy",
+          "match": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}(?::\\d+)?(?:/\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.bind-address.haproxy",
+          "match": "(?<!\\S)(?:\\*:\\d+|:\\d+|\\*)"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.duration.haproxy",
+          "match": "\\b\\d+(?:\\.\\d+)?(?:us|ms|s|m|h|d)?\\b"
+        }
+      ]
+    },
+    "paths": {
+      "patterns": [
+        {
+          "name": "string.unquoted.path.haproxy",
+          "match": "(?<=\\s)/(?:[A-Za-z0-9_.%+~:@-]+/)*[A-Za-z0-9_.%+~:@-]*"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.haproxy",
+          "match": "="
+        },
+        {
+          "name": "punctuation.section.braces.haproxy",
+          "match": "[{}\\[\\]()]"
+        }
+      ]
+    }
+  }
+}

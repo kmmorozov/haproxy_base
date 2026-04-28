@@ -1,0 +1,64 @@
+
+Модуль «Введение в haproxy»
+1. Основы haproxy – что, зачем и почему
+Отличия Enterprise vs community
+Установка – apt(deb)/docker/yum(rhel)
+
+
+
+
+
+Модуль «Что такое балансировка, виды и типы»
+2. Балансировка различные виды трафика: TCP / UDP / HTTP
+Типы балансировок (roundrobin, least conn, source и пр.)
+
+
+
+
+
+Модуль «Проверки состояния»
+3. Health checks – проверка back-серверов
+Health checks (кастомные http-запросы)
+Распределение нагрузки по серверам
+
+
+
+
+
+Модуль «Контроль доступа при HTTP»
+4. ACL-листы, аутентификация, Whitelist, http-заголовки
+
+
+
+
+
+Модуль «Работа с cookies и кеширование HTTP»
+5. Cookies – настройки sticky-sessions
+Настройка кеширования
+
+
+
+
+
+Модуль «Работа с SSL»
+6. Настройка терминирования SSL-соединений
+
+
+
+
+
+Модуль «Мониторинг, алертинг и логирование haproxy»
+7. Monitoring Dashboard в Haproxy
+Haproxy logs
+Haproxy exporters (Prometheus)
+
+
+
+
+
+ИТОГО:
+40
+
+
+
+

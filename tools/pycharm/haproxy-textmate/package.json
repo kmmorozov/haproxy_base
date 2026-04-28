@@ -1,0 +1,41 @@
+{
+  "name": "haproxy-textmate-bundle",
+  "displayName": "HAProxy TextMate Bundle",
+  "description": "Local TextMate grammar for HAProxy configuration files and Markdown fenced code blocks.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "haproxy",
+        "aliases": [
+          "HAProxy",
+          "haproxy",
+          "HAProxy Config",
+          "haproxy-config"
+        ],
+        "extensions": [
+          ".cfg",
+          ".conf"
+        ],
+        "filenames": [
+          "haproxy.cfg"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "haproxy",
+        "scopeName": "source.haproxy",
+        "path": "./syntaxes/haproxy.tmLanguage.json"
+      }
+    ]
+  }
+}
