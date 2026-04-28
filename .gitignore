@@ -1,3 +1,6 @@
 ./codex
 ./idea
 ./venv
+.codex
+.idea
+.venv
